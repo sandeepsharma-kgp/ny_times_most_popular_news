@@ -4,13 +4,17 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val BASE_URL =
-    "http://api.nytimes.com/svc/mostpopular/v2/mostviewed/" +
-            "all-sections/30.json?api-key=IJWn5aWd97vStEKZCPa80kGfT31jeu0b"
+    "https://api.nytimes.com/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -22,10 +26,16 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
+//
+//private val retrofit = Retrofit.Builder()
+//    .baseUrl(BASE_URL)
+//    .addConverterFactory(GsonConverterFactory.create())
+//    .build()
+
 interface NewsService {
 
-   @GET
-    fun getNewsList() : Deferred<List<NewsModel>>
+   @GET("svc/mostpopular/v2/mostviewed/all-sections/30.json")
+    fun getNewsList(@Query("api-key")type: String) : Deferred<NewsModel>
 }
 
 object NewsApi {

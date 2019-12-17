@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="newsItem"
-            type="com.example.nyt_mostpopular.NewsModel" />
+            name="result"
+            type="com.example.nyt_mostpopular.Results" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
-            android:inputType="textMultiLine"
+            android:text="@{result.title}"
             app:layout_constraintBottom_toTopOf="@+id/editText2"
             app:layout_constraintEnd_toStartOf="@+id/imageButton"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -53,7 +53,7 @@
             android:layout_width="123dp"
             android:layout_height="30dp"
             android:ems="10"
-            android:inputType="date"
+            android:text="@{result.type}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/imageButton"
             app:layout_constraintTop_toBottomOf="@+id/imageButton" />
@@ -62,7 +62,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@{result.url}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/editText2"
             app:layout_constraintStart_toEndOf="@+id/imageView"

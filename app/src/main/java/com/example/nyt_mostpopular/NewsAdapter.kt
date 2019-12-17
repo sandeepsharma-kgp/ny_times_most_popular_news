@@ -7,21 +7,21 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nyt_mostpopular.databinding.NewsItemBinding
 
-class NewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<NewsModel, NewsAdapter.NewsViewHolder>(DiffCallback) {
-    companion object DiffCallback : DiffUtil.ItemCallback<NewsModel>() {
-        override fun areItemsTheSame(oldItem: NewsModel, newItem: NewsModel): Boolean {
+class NewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<Results, NewsAdapter.NewsViewHolder>(DiffCallback) {
+    companion object DiffCallback : DiffUtil.ItemCallback<Results>() {
+        override fun areItemsTheSame(oldItem: Results, newItem: Results): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: NewsModel, newItem: NewsModel): Boolean {
+        override fun areContentsTheSame(oldItem: Results, newItem: Results): Boolean {
             return oldItem.id == newItem.id
         }
     }
 
     class NewsViewHolder(private var binding: NewsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(newsItem: NewsModel) {
-            binding.newsItem = newsItem
+        fun bind(newsItem: Results) {
+            binding.result = newsItem
             binding.executePendingBindings()
         }
     }
@@ -38,8 +38,8 @@ class NewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<Ne
         holder.bind(newsItem)
     }
 
-    class OnClickListener(val clickListener: (newsItem: NewsModel) -> Unit) {
-        fun onClick(newsItem: NewsModel) = clickListener(newsItem)
+    class OnClickListener(val clickListener: (newsItem: Results) -> Unit) {
+        fun onClick(newsItem: Results) = clickListener(newsItem)
     }
 
 }
