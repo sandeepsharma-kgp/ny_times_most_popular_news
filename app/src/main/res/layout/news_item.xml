@@ -1,72 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="result"
             type="com.example.nyt_mostpopular.Results" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="horizontal"
+        android:layout_weight="7"
+        android:padding="8dp">
 
-        <ImageView
-            android:id="@+id/imageView"
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="4dp">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:cardCornerRadius="50dp">
+            <ImageView
+                android:id="@+id/galleryImage"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="fitCenter"
+                app:imgSrcUrl="@{result.media[0].mediaMetadata[1].url}"
+                />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
+
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.365"
-            app:srcCompat="@android:drawable/ic_menu_directions" />
+            android:orientation="vertical"
+            android:layout_weight="7"
+            >
 
-        <TextView
-            android:id="@+id/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="start|top"
-            android:text="@{result.title}"
-            app:layout_constraintBottom_toTopOf="@+id/editText2"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/sdetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#777777"
+                android:textSize="16sp"
+                android:maxLines="2"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:text="@{result.title}"/>
 
-        <TextView
-            android:id="@+id/editText2"
-            android:layout_width="123dp"
-            android:layout_height="30dp"
-            android:ems="10"
-            android:text="@{result.type}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/imageButton"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{result.url}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/editText2"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/author"
+                        android:textSize="15sp"
+                        android:textColor="#42A5F5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:text="@{result.byline}"/>
+
+
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_my_calendar" />
+
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{result.published_date}"
+                        android:textColor="#42A5F5"
+                        android:textSize="14sp" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 </layout>
