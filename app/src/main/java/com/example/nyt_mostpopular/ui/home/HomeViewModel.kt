@@ -1,6 +1,8 @@
 package com.example.nyt_mostpopular.ui.home
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,8 +15,17 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.await
 
-class HomeViewModel : ViewModel() {
+enum class NewsApiStatus {
+    LOADING, ERROR, DONE
+}
 
+class HomeViewModel(app: Application, val timePeriod: String) : AndroidViewModel(app) {
+    // The internal MutableLiveData String that stores the status of the most recent request
+    private val _status = MutableLiveData<NewsApiStatus>()
+
+    // The external immutable LiveData for the request status String
+    val status: LiveData<NewsApiStatus>
+        get() = _status
     private val _news = MutableLiveData<List<Results>>()
     val news: LiveData<List<Results>>
         get() = _news
@@ -30,14 +41,17 @@ class HomeViewModel : ViewModel() {
     private lateinit var viewModelJob : Job
     private fun getNewsList() {
         viewModelJob = CoroutineScope(Job() + Dispatchers.Main).launch {
-            var newsList = NewsApi.retrofitService.getNewsList("1","IJWn5aWd97vStEKZCPa80kGfT31jeu0b")
+            var newsList = NewsApi.retrofitService.getNewsList(timePeriod,"IJWn5aWd97vStEKZCPa80kGfT31jeu0b")
             try {
+                _status.value = NewsApiStatus.LOADING
                 var listResult = newsList.await()
                 _news.value = listResult.results
+                _status.value = NewsApiStatus.DONE
                 Log.e("RESULT", listResult.toString())
             } catch (t: Throwable) {
                 _news.value = null
-                Log.e("EROR", t.toString())
+                _status.value = NewsApiStatus.ERROR
+                Log.e("ERROR", t.toString())
             }
         }
     }

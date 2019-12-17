@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.nyt_mostpopular.DetailFragment
+import com.example.nyt_mostpopular.DetailViewModelFactory
 import com.example.nyt_mostpopular.NewsAdapter
 import com.example.nyt_mostpopular.databinding.FragmentHomeBinding
 
@@ -23,8 +24,10 @@ class HomeFragment : Fragment() {
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater)
         binding.setLifecycleOwner(this)
+        val application = requireNotNull(activity).application
+        val viewModelFactory = NewsListViewModelFactory("1", application)
         homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
+            ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
         binding.viewModel = homeViewModel
         binding.newsList.adapter = NewsAdapter(NewsAdapter.OnClickListener{
             homeViewModel.displayNewsDetails(it)

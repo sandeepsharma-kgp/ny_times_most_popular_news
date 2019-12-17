@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.nyt_mostpopular.ui.dashboard.DashboardViewModel" />
+            type="com.example.nyt_mostpopular.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +26,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:listData="@{viewModel.news}"
             app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:newsApiStatus="@{viewModel.status}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

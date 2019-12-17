@@ -112,7 +112,7 @@
                             android:layout_height="wrap_content"
                             android:text="@{result.published_date}"
                             android:textColor="#42A5F5"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

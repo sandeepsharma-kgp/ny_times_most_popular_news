@@ -17,10 +17,11 @@ import com.example.nyt_mostpopular.databinding.FragmentDashboardBinding
 import com.example.nyt_mostpopular.databinding.FragmentHomeBinding
 import com.example.nyt_mostpopular.ui.home.HomeFragmentDirections
 import com.example.nyt_mostpopular.ui.home.HomeViewModel
+import com.example.nyt_mostpopular.ui.home.NewsListViewModelFactory
 
 class DashboardFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var dashboardViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,8 +30,10 @@ class DashboardFragment : Fragment() {
     ): View? {
         val binding = FragmentDashboardBinding.inflate(inflater)
         binding.setLifecycleOwner(this)
+        val application = requireNotNull(activity).application
+        val viewModelFactory = NewsListViewModelFactory("7", application)
         dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
+            ViewModelProviders.of(this,viewModelFactory).get(HomeViewModel::class.java)
         binding.viewModel = dashboardViewModel
         binding.newsList.adapter = NewsAdapter(NewsAdapter.OnClickListener{
             dashboardViewModel.displayNewsDetails(it)

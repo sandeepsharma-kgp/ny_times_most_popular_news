@@ -17,23 +17,7 @@
   ~
   -->
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-        <variable
-            name="viewModel"
-            type="com.example.nyt_mostpopular.DetailViewModel" />
-    </data>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <WebView
-            android:id="@+id/webView"
-            android:padding="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-    </LinearLayout>
-</layout>
+<animated-rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/loading_img"
+    android:pivotX="50%"
+    android:pivotY="50%" />

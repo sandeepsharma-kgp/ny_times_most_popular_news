@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.nyt_mostpopular.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="NYT-MostPopular News"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_showDetail"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.nyt_mostpopular.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="NYT-MostPopular News"
         tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_showDetail"
@@ -27,16 +27,23 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.nyt_mostpopular.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:label="NYT-MostPopular News"
+        tools:layout="@layout/fragment_notifications">
+        <action
+            android:id="@+id/action_showDetail"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
         <fragment
             android:id="@+id/detailFragment"
             android:name="com.example.nyt_mostpopular.DetailFragment"
-            android:label="fragment_detail"
             tools:layout="@layout/fragment_detail">
             <argument
                 android:name="selectedNews"
                 app:argType="com.example.nyt_mostpopular.Results" />
+            <action
+                android:id="@+id/action_detailFragment_pop"
+                app:popUpTo="@id/detailFragment"
+                app:popUpToInclusive="true" />
         </fragment>
 </navigation>
