@@ -1,9 +1,7 @@
-# ny_times_most_popular_news
-It's an android app developed in Kotlin using Retrofit to consume NY Times api for most popular news in past day/week/month and showing using RecyclerView and detailed view in webView
 
 # NYT-MostPopular News
 
-This app shows most popular news by New York Times grouped on day/week/month basis.
+It's an android app developed in Kotlin using Retrofit to consume NY Times api for most popular news in past day/week/month and showing using RecyclerView and detailed view in webView
 
 ## Installation
 
