@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import com.example.nyt_mostpopular.DetailFragment
 import com.example.nyt_mostpopular.NewsAdapter
 import com.example.nyt_mostpopular.databinding.FragmentHomeBinding
 
@@ -25,10 +27,13 @@ class HomeFragment : Fragment() {
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         binding.viewModel = homeViewModel
         binding.newsList.adapter = NewsAdapter(NewsAdapter.OnClickListener{
-
+            homeViewModel.displayNewsDetails(it)
         })
-        homeViewModel.news.observe(this, Observer {
-
+        homeViewModel.navigateToSelectedNews.observe(this, Observer {
+            if(null != it) {
+                this.findNavController().navigate(HomeFragmentDirections.actionShowDetail(it))
+                homeViewModel.displayNewsDetailsComplete()
+            }
         })
         return binding.root
     }

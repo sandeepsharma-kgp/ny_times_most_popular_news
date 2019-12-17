@@ -13,6 +13,7 @@ data class NewsModel (
     @SerializedName("results") val results : List<Results>
 )
 
+@Parcelize
 data class Media (
 
     @SerializedName("type") val type : String?,
@@ -21,17 +22,18 @@ data class Media (
     @SerializedName("copyright") val copyright : String?,
     @SerializedName("approved_for_syndication") val approved_for_syndication : Int,
     @Json(name = "media-metadata") val mediaMetadata : List<MediaMetadata>
-)
+) : Parcelable
 
+@Parcelize
 data class MediaMetadata (
 
 @SerializedName("url") val url : String,
 @SerializedName("format") val format : String,
 @SerializedName("height") val height : Int,
 @SerializedName("width") val width : Int
-)
+) : Parcelable
 
-
+@Parcelize
 data class Results (
 
     @SerializedName("url") val url : String,
@@ -47,9 +49,9 @@ data class Results (
     @SerializedName("id") val id : String,
     @SerializedName("asset_id") val asset_id : String,
     @SerializedName("views") val views : Int,
-    @SerializedName("des_facet") val des_facet : Any?,
-    @SerializedName("org_facet") val org_facet : Any?,
-    @SerializedName("per_facet") val per_facet : Any?,
-    @SerializedName("geo_facet") val geo_facet : Any?,
+//    @SerializedName("des_facet") val des_facet : String?,
+//    @SerializedName("org_facet") val org_facet : String?,
+//    @SerializedName("per_facet") val per_facet : String?,
+//    @SerializedName("geo_facet") val geo_facet : String?,
     @SerializedName("media") val media : List<Media>
-)
+) : Parcelable

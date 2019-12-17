@@ -6,16 +6,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nyt_mostpopular.NewsApi
 import com.example.nyt_mostpopular.Results
+import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.await
 
 class HomeViewModel : ViewModel() {
 
     private val _news = MutableLiveData<List<Results>>()
     val news: LiveData<List<Results>>
         get() = _news
+
+    private val _navigateToSelectedNews= MutableLiveData<Results>()
+    val navigateToSelectedNews : LiveData<Results>
+        get() = _navigateToSelectedNews
 
     init {
         getNewsList()
@@ -24,13 +30,13 @@ class HomeViewModel : ViewModel() {
     private lateinit var viewModelJob : Job
     private fun getNewsList() {
         viewModelJob = CoroutineScope(Job() + Dispatchers.Main).launch {
-            var newsList = NewsApi.retrofitService.getNewsList("IJWn5aWd97vStEKZCPa80kGfT31jeu0b")
+            var newsList = NewsApi.retrofitService.getNewsList("1","IJWn5aWd97vStEKZCPa80kGfT31jeu0b")
             try {
                 var listResult = newsList.await()
                 _news.value = listResult.results
-                Log.e("RESULT", newsList.toString())
+                Log.e("RESULT", listResult.toString())
             } catch (t: Throwable) {
-                _news.value = ArrayList()
+                _news.value = null
                 Log.e("EROR", t.toString())
             }
         }
@@ -39,5 +45,13 @@ class HomeViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun displayNewsDetails(result: Results) {
+        _navigateToSelectedNews.value = result
+    }
+
+    fun displayNewsDetailsComplete() {
+        _navigateToSelectedNews.value = null
     }
 }

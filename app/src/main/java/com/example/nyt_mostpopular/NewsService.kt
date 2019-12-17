@@ -11,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 private const val BASE_URL =
@@ -34,8 +35,8 @@ private val retrofit = Retrofit.Builder()
 
 interface NewsService {
 
-   @GET("svc/mostpopular/v2/mostviewed/all-sections/30.json")
-    fun getNewsList(@Query("api-key")type: String) : Deferred<NewsModel>
+   @GET("svc/mostpopular/v2/mostviewed/all-sections/{past-day}.json")
+    fun getNewsList(@Path("past-day")pastDay: String, @Query("api-key")type: String) : Deferred<NewsModel>
 }
 
 object NewsApi {
