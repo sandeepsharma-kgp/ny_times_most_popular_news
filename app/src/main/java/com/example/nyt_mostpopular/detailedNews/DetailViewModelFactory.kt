@@ -14,18 +14,19 @@
  *  limitations under the License.
  */
 
-package com.example.nyt_mostpopular
+package com.example.nyt_mostpopular.detailedNews
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.nyt_mostpopular.newsModel.Results
 
 /**
  * Simple ViewModel factory that provides the MarsProperty and context to the ViewModel.
  */
 class DetailViewModelFactory(
-        private val results: Results,
-        private val application: Application) : ViewModelProvider.Factory {
+    private val results: Results,
+    private val application: Application) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {

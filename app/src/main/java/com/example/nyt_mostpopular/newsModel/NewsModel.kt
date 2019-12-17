@@ -1,4 +1,4 @@
-package com.example.nyt_mostpopular
+package com.example.nyt_mostpopular.newsModel
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -49,9 +49,5 @@ data class Results (
     @SerializedName("id") val id : String,
     @SerializedName("asset_id") val asset_id : String,
     @SerializedName("views") val views : Int,
-//    @SerializedName("des_facet") val des_facet : String?,
-//    @SerializedName("org_facet") val org_facet : String?,
-//    @SerializedName("per_facet") val per_facet : String?,
-//    @SerializedName("geo_facet") val geo_facet : String?,
     @SerializedName("media") val media : List<Media>
 ) : Parcelable

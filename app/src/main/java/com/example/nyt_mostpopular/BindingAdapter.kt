@@ -7,7 +7,9 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.nyt_mostpopular.ui.home.NewsApiStatus
+import com.example.nyt_mostpopular.newsListView.NewsAdapter
+import com.example.nyt_mostpopular.newsListView.NewsApiStatus
+import com.example.nyt_mostpopular.newsModel.Results
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Results>?) {

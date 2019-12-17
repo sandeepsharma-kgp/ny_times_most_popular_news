@@ -22,7 +22,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.nyt_mostpopular.DetailViewModel" />
+            type="com.example.nyt_mostpopular.detailedNews.DetailViewModel" />
     </data>
 
     <LinearLayout

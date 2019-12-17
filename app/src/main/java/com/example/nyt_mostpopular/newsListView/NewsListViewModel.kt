@@ -1,25 +1,22 @@
-package com.example.nyt_mostpopular.ui.home
+package com.example.nyt_mostpopular.newsListView
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.nyt_mostpopular.NewsApi
-import com.example.nyt_mostpopular.Results
-import com.google.gson.JsonObject
+import com.example.nyt_mostpopular.newsApi.NewsApi
+import com.example.nyt_mostpopular.newsModel.Results
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.await
 
 enum class NewsApiStatus {
     LOADING, ERROR, DONE
 }
 
-class HomeViewModel(app: Application, val timePeriod: String) : AndroidViewModel(app) {
+class NewsListViewModel(app: Application, val timePeriod: String) : AndroidViewModel(app) {
     // The internal MutableLiveData String that stores the status of the most recent request
     private val _status = MutableLiveData<NewsApiStatus>()
 

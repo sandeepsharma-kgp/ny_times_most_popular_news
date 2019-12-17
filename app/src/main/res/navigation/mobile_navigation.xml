@@ -3,32 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_past_day">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.nyt_mostpopular.ui.home.HomeFragment"
-        android:label="NYT-MostPopular News"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/navigation_past_day"
+        android:name="com.example.nyt_mostpopular.newsListView.PastDayNewsListView"
+        android:label="NYT-MostPopular News">
         <action
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.nyt_mostpopular.ui.dashboard.DashboardFragment"
-        android:label="NYT-MostPopular News"
-        tools:layout="@layout/fragment_dashboard">
+        android:id="@+id/navigation_past_week"
+        android:name="com.example.nyt_mostpopular.newsListView.PastWeekNewsListView"
+        android:label="NYT-MostPopular News">
         <action
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.nyt_mostpopular.ui.notifications.NotificationsFragment"
-        android:label="NYT-MostPopular News"
-        tools:layout="@layout/fragment_notifications">
+        android:id="@+id/navigation_past_month"
+        android:name="com.example.nyt_mostpopular.newsListView.PastMonthNewsListView"
+        android:label="NYT-MostPopular News">
         <action
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment" />
@@ -36,14 +33,10 @@
 
         <fragment
             android:id="@+id/detailFragment"
-            android:name="com.example.nyt_mostpopular.DetailFragment"
+            android:name="com.example.nyt_mostpopular.detailedNews.DetailFragment"
             tools:layout="@layout/fragment_detail">
             <argument
                 android:name="selectedNews"
-                app:argType="com.example.nyt_mostpopular.Results" />
-            <action
-                android:id="@+id/action_detailFragment_pop"
-                app:popUpTo="@id/detailFragment"
-                app:popUpToInclusive="true" />
+                app:argType="com.example.nyt_mostpopular.newsModel.Results" />
         </fragment>
 </navigation>

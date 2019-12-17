@@ -1,4 +1,4 @@
-package com.example.nyt_mostpopular.ui.home
+package com.example.nyt_mostpopular.newsListView
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
@@ -10,8 +10,11 @@ class NewsListViewModelFactory(
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(application, timePeriod) as T
+        if (modelClass.isAssignableFrom(NewsListViewModel::class.java)) {
+            return NewsListViewModel(
+                application,
+                timePeriod
+            ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class") as Throwable
     }
